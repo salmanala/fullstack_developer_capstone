@@ -13,7 +13,7 @@ from django.contrib.auth import login, authenticate, logout
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
-from .restapis import get_request
+from .restapis import get_request, analyze_review_sentiments
 from .models import CarMake, CarModel
 # from .populate import initiate
 
@@ -107,4 +107,10 @@ def get_cars(request):
             ]
         })
 
+    return JsonResponse(result, safe=False)
+
+
+def analyze_review(request):
+    text = request.GET.get("text", "")
+    result = analyze_review_sentiments(text)
     return JsonResponse(result, safe=False)
