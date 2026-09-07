@@ -14,6 +14,7 @@ import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
 from .restapis import get_request
+from .models import CarMake, CarModel
 # from .populate import initiate
 
 
@@ -84,3 +85,26 @@ def get_dealer_by_id(request, dealer_id):
 def get_dealers_by_state(request, state):
     dealers = get_request(f"/fetchDealers/{state}")
     return JsonResponse(dealers, safe=False)
+
+
+def get_cars(request):
+    car_makes = CarMake.objects.all()
+    result = []
+
+    for make in car_makes:
+        models = CarModel.objects.filter(car_make=make)
+
+        result.append({
+            "make": make.name,
+            "description": make.description,
+            "models": [
+                {
+                    "name": model.name,
+                    "type": model.type,
+                    "year": model.year
+                }
+                for model in models
+            ]
+        })
+
+    return JsonResponse(result, safe=False)
