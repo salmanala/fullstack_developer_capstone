@@ -79,3 +79,8 @@ def get_dealers(request):
 def get_dealer_by_id(request, dealer_id):
     dealer = get_request(f"/fetchDealer/{dealer_id}")
     return JsonResponse(dealer, safe=False)
+
+
+def get_dealers_by_state(request, state):
+    dealers = get_request(f"/fetchDealers/{state}")
+    return JsonResponse(dealers, safe=False)
