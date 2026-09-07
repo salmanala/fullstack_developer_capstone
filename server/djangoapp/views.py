@@ -69,3 +69,8 @@ def get_dealer_reviews(request, dealer_id):
 def logout_request(request):
     logout(request)
     return JsonResponse({"status": "Logged out"})
+
+
+def get_dealers(request):
+    dealers = get_request("/fetchDealers")
+    return JsonResponse(dealers, safe=False)
