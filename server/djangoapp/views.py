@@ -13,7 +13,7 @@ from django.contrib.auth import login, authenticate, logout
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
-from .restapis import get_request, analyze_review_sentiments
+from .restapis import get_request, post_review, analyze_review_sentiments
 from .models import CarMake, CarModel
 # from .populate import initiate
 
@@ -64,8 +64,16 @@ def get_dealer_reviews(request, dealer_id):
 # ...
 
 # Create a `add_review` view to submit a review
-# def add_review(request):
-# ...
+def add_review(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            result = post_review(data)
+            return JsonResponse({"status": 200, "review": result})
+        except Exception as e:
+            return JsonResponse({"status": 500, "message": str(e)}, status=500)
+
+    return JsonResponse({"status": 405, "message": "POST request required"}, status=405)
 
 def logout_request(request):
     logout(request)
