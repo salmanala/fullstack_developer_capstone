@@ -6,6 +6,7 @@ from . import views
 app_name = 'djangoapp'
 
 urlpatterns = [
+    path('dealer/<int:dealer_id>', views.get_dealer_by_id, name='dealer_by_id'),
     path('get_dealers', views.get_dealers, name='get_dealers'),
     path('login', views.login_user, name='login'),
     path('logout', views.logout_request, name='logout'),

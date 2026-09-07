@@ -74,3 +74,8 @@ def logout_request(request):
 def get_dealers(request):
     dealers = get_request("/fetchDealers")
     return JsonResponse(dealers, safe=False)
+
+
+def get_dealer_by_id(request, dealer_id):
+    dealer = get_request(f"/fetchDealer/{dealer_id}")
+    return JsonResponse(dealer, safe=False)
