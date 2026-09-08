@@ -1,2 +1,2 @@
-curl http://127.0.0.1:8000/djangoapp/dealer/15
-{"_id": "6a9eb51e1b3ce75cc62f0e67", "id": 15, "city": "San Antonio", "state": "Texas", "address": "5057 Pankratz Hill", "zip": "78225", "lat": "29.3875", "long": "-98.5245", "short_name": "Tempsoft", "full_name": "Tempsoft Car Dealership", "__v": 0}
+curl -X GET http://localhost:3030/fetchDealer/2
+{"_id":"6a9fbdac289c7e45ae0c0445","id":2,"city":"Minneapolis","state":"Minnesota","address":"6337 Butternut Crossing","zip":"55402","lat":"44.9762","long":"-93.2759","short_name":"Temp","full_name":"Temp Car Dealership","__v":0}
