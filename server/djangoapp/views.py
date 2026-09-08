@@ -96,26 +96,27 @@ def get_dealers_by_state(request, state):
 
 
 def get_cars(request):
-    car_makes = CarMake.objects.all()
-    result = []
+    import json
+    from pathlib import Path
 
-    for make in car_makes:
-        models = CarModel.objects.filter(car_make=make)
+    car_file = Path(__file__).resolve().parent.parent / "database" / "data" / "car_records.json"
 
-        result.append({
-            "make": make.name,
-            "description": make.description,
-            "CarModels": [
-                {
-                    "name": model.name,
-                    "type": model.type,
-                    "year": model.year
-                }
-                for model in models
-            ]
-        })
+    with open(car_file, "r") as file:
+        data = json.load(file)
 
-    return JsonResponse(result, safe=False)
+    car_models = [
+        {
+            "make": car["make"],
+            "model": car["model"],
+            "bodyType": car["bodyType"],
+            "year": car["year"],
+            "dealer_id": car["dealer_id"],
+            "mileage": car["mileage"]
+        }
+        for car in data["cars"]
+    ]
+
+    return JsonResponse({"CarModels": car_models})
 
 
 def analyze_review(request):
