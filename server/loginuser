@@ -1,2 +1,2 @@
-curl -X POST http://127.0.0.1:8000/djangoapp/login -H "Content-Type: application/json" -d '{"userName":"testuser","password":"testpass"}'
+curl -X POST -H "Content-Type: application/json" -d '{"userName":"testuser","password":"testpass"}' http://127.0.0.1:8000/djangoapp/login
 {"userName": "testuser", "status": "Authenticated"}
