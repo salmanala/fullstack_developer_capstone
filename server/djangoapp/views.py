@@ -77,7 +77,7 @@ def add_review(request):
 
 def logout_request(request):
     logout(request)
-    return JsonResponse({"status": "Logged out"})
+    return JsonResponse({"userName": "", "status": "Logged out"})
 
 
 def get_dealers(request):
