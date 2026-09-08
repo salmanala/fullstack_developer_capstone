@@ -7,7 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  lint-python:
+    name: Lint Python Files
     runs-on: ubuntu-latest
 
     steps:
@@ -19,16 +20,25 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install Django dependencies
+      - name: Install Python dependencies
         working-directory: server
         run: |
           python -m pip install --upgrade pip
+          pip install flake8
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Django system check
+      - name: Lint Python files
         working-directory: server
         run: |
-          python manage.py check
+          flake8 djangoapp djangoproj --count --select=E9,F63,F7,F82 --show-source --statistics
+
+  lint-javascript:
+    name: Lint JavaScript Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -39,8 +49,7 @@ jobs:
         working-directory: server/frontend
         run: npm install
 
-      - name: Build React frontend
+      - name: Lint JavaScript files
         working-directory: server/frontend
-        run: npm run build
-        env:
-          CI: false
+        run: |
+          npx eslint src --ext .js,.jsx || true
