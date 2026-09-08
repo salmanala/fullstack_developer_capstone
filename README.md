@@ -1,4 +1,4 @@
-# Cars Dealership Full-Stack Capstone Project
+# fullstack_developer_capstone
 
 This project is a full-stack web application for Cars Dealership, a national car retailer in the United States.
 
