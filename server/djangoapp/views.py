@@ -105,7 +105,7 @@ def get_cars(request):
         result.append({
             "make": make.name,
             "description": make.description,
-            "models": [
+            "CarModels": [
                 {
                     "name": model.name,
                     "type": model.type,

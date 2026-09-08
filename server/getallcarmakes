@@ -1,2 +1,2 @@
-curl http://127.0.0.1:8000/djangoapp/get_cars
-[{"make": "Toyota", "description": "Japanese automobile manufacturer", "models": [{"name": "Camry", "type": "Sedan", "year": 2023}, {"name": "RAV4", "type": "SUV", "year": 2023}]}, {"make": "Honda", "description": "Japanese automobile manufacturer", "models": [{"name": "Civic", "type": "Sedan", "year": 2022}]}, {"make": "Ford", "description": "American automobile manufacturer", "models": [{"name": "Escape", "type": "SUV", "year": 2023}]}]
+curl -X GET http://127.0.0.1:8000/djangoapp/get_cars
+[{"make": "Toyota", "description": "Japanese car manufacturer", "CarModels": [{"name": "Camry", "type": "Sedan", "year": 2023}, {"name": "RAV4", "type": "SUV", "year": 2023}]}, {"make": "Honda", "description": "Japanese car manufacturer", "CarModels": [{"name": "Civic", "type": "Sedan", "year": 2022}]}, {"make": "Ford", "description": "American car manufacturer", "CarModels": [{"name": "Escape", "type": "SUV", "year": 2021}]}]
